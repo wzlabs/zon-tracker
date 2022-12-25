@@ -1,4 +1,4 @@
-# zon-tracker
+# ZonTracker
 Time Tracking Application
 
 ![alt text](https://github.com/ZonResearch/zon-tracker/blob/main/desktop.png?raw=true)
