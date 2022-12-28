@@ -4,6 +4,7 @@ import HomeView from "@/views/HomeView.vue";
 import TrackingView from "@/views/TrackingView.vue";
 import TaskView from "@/views/TaskView.vue";
 import LoginView from "@/views/LoginView.vue";
+import SignupView from "@/views/SignupView.vue";
 import ProfileView from "@/views/ProfileView.vue";
 
 const routes: Array<RouteRecordRaw> = [
@@ -17,6 +18,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/login",
     name: "login",
     component: LoginView,
+  },
+  {
+    path: "/signup",
+    name: "signup",
+    component: SignupView,
   },
   {
     path: "/profile",

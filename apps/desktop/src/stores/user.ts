@@ -26,17 +26,15 @@ export const useUserStore = defineStore("user", {
     },
   },
   actions: {
-    // async createUser(email: string, firstName: string, lastName: string) {
-    //   const newUser: User | null = await UserService.createUser(
-    //     email,
-    //     firstName,
-    //     lastName
-    //   );
-
-    //   if (newUser) {
-    //     this.currentUser = newUser;
-    //   }
-    // },
+    async signUp(payload: {
+      firstName: string;
+      lastName?: string;
+      email: string;
+      password: string;
+    }): Promise<User> {
+      const newUser: User = await UserService.signUp(payload);
+      return newUser;
+    },
     async login(payload: { email: string; password: string }) {
       const resToken: Token = await UserService.signIn(payload);
       if (resToken.userData) {
@@ -60,14 +58,23 @@ export const useUserStore = defineStore("user", {
         this.isLoggedIn = true;
         this.isAnonymousUser = false;
 
-        // axios.Axios.prototype.defaults.headers.common["Authorization"] =
-        //   "Bearer " + resToken.token;
         setAuthorization(resToken.token);
+        localStorage.setItem("token", resToken.token);
       } else {
         this.isLoggedIn = false;
         this.isAnonymousUser = true;
         setAuthorization("");
+        localStorage.removeItem("token");
       }
+    },
+    async logout() {
+      await UserService.logout();
+      this.user = null;
+      this.userId = null;
+      this.isLoggedIn = false;
+      this.isAnonymousUser = true;
+      setAuthorization("");
+      localStorage.removeItem("token");
     },
   },
 });

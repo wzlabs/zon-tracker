@@ -44,6 +44,28 @@ async function signIn(payload: {
   return token;
 }
 
+async function signUp(payload: {
+  firstName: string;
+  lastName?: string;
+  email: string;
+  password: string;
+}): Promise<User> {
+  const res = await axios.post("/users/create", {
+    firstName: payload.firstName,
+    lastName: payload.lastName,
+    username: payload.email,
+    email: payload.email,
+    password: payload.password,
+  });
+
+  const data: User = res.data as User;
+
+  if (data.userId) {
+    return data;
+  }
+  throw new Error();
+}
+
 async function logout(): Promise<boolean> {
   // Implement later
 
@@ -52,5 +74,6 @@ async function logout(): Promise<boolean> {
 
 export default {
   signIn,
+  signUp,
   logout,
 };

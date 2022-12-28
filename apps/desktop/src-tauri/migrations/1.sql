@@ -11,32 +11,6 @@ CREATE TABLE tasks (
   ref_id VARCHAR(128)
 );
 
-CREATE TABLE tracking_day (
-  id VARCHAR(36) NOT NULL PRIMARY KEY,
-  user_id VARCHAR(128) NOT NULL,
-  work_day INTEGER NOT NULL,
-  nb_of_seconds INTEGER DEFAULT 0,
-  ref_id VARCHAR(128),
-  UNIQUE(user_id, work_day)
-);
-
-CREATE TABLE tracking_time (
-  id VARCHAR(36) NOT NULL PRIMARY KEY,
-  tracking_day_id VARCHAR(36) NOT NULL,
-  start_time INTEGER,
-  stop_time INTEGER,
-  nb_of_seconds INTEGER DEFAULT 0,
-  ref_id VARCHAR(128)
-);
-
-CREATE TABLE tracking_screenshots (
-  id VARCHAR(36) NOT NULL PRIMARY KEY,
-  tracking_day_id VARCHAR(36) NOT NULL,
-  capture_time INTEGER,
-  image_url TEXT,
-  ref_id VARCHAR(128)
-);
-
 CREATE TABLE tracking (
   id VARCHAR(36) NOT NULL PRIMARY KEY,
   user_id VARCHAR(128) NOT NULL,

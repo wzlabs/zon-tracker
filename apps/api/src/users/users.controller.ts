@@ -8,6 +8,8 @@ import {
   UseGuards,
   HttpException,
   HttpStatus,
+  // ClassSerializerInterceptor,
+  // UseInterceptors,
 } from '@nestjs/common';
 // import { createCipheriv, randomBytes, scrypt } from 'crypto';
 // import { promisify } from 'util';
@@ -22,13 +24,14 @@ import { v4 } from 'uuid';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post()
+  // @UseInterceptors(ClassSerializerInterceptor)
+  @Post('/create')
   async create(@Body() createUserDto: CreateUserDto) {
     createUserDto.userId = v4();
 
     // Default values
     createUserDto.isStaff = false;
-    createUserDto.isActive = false;
+    createUserDto.isActive = true;
     createUserDto.isSuperuser = false;
     createUserDto.verifiedEmail = false;
     createUserDto.lastLogin = null;
@@ -47,6 +50,17 @@ export class UsersController {
       );
     }
 
+    const existedUser: User = await this.usersService.findOneByUsername(
+      createUserDto.username,
+    );
+
+    if (existedUser) {
+      throw new HttpException(
+        'The email has been already registered',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     // Generate password hash
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(createUserDto.password, salt);
@@ -54,7 +68,20 @@ export class UsersController {
     createUserDto.salt = salt;
 
     // Create a new user
-    await this.usersService.create(createUserDto);
+    const cUser: User = await this.usersService.create(createUserDto);
+
+    return {
+      _id: cUser._id,
+      userId: cUser.userId,
+      username: cUser.username,
+      email: cUser.email,
+      firstName: cUser.firstName,
+      lastName: cUser.lastName,
+      isActive: cUser.isActive,
+      isStaff: cUser.isStaff,
+      isSuperuser: cUser.isSuperuser,
+      verifiedEmail: cUser.verifiedEmail,
+    };
   }
 
   @UseGuards(JwtAuthGuard)

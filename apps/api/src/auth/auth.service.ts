@@ -39,6 +39,7 @@ export class AuthService {
         isStaff: user.isStaff,
         isActive: user.isActive,
         isSuperuser: user.isSuperuser,
+        verifiedEmail: user.verifiedEmail,
         lastLogin: user.lastLogin,
         dateJoined: user.dateJoined,
       },
