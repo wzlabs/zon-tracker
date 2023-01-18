@@ -1,9 +1,27 @@
-# desktop
+
+
+# Tauri App
+
+## Requirement
+- NodeJS version: 16.15.0 or above
 
 ## Project setup
 ```
 yarn install
 ```
+
+## Tauri App Development
+```
+yarn tauri:serve
+```
+
+## Tauri App Production
+
+```
+yarn tauri:build
+```
+
+## Tests, Compiles, and others
 
 ### Compiles and hot-reloads for development
 ```
@@ -29,18 +47,5 @@ yarn test:e2e
 ```
 yarn lint
 ```
-
-## Tauri App
-
-### Dev
-```
-yarn tauri:serve
-```
-
-### Production
-```
-yarn tauri:build
-```
-
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
