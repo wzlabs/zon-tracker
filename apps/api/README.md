@@ -26,11 +26,18 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Requirement
+- NodeJS version 16.15.0 or later
+
 ## Installation
 
 ```bash
 $ npm install
 ```
+
+## MongoDB configuration
+- Open the file `src/app.module.ts` to change MongoDB configuration
+- [See more details](https://docs.nestjs.com/techniques/mongodb)
 
 ## Running the app
 
