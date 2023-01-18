@@ -1,4 +1,3 @@
-// import Database from "tauri-plugin-sql-api";
 import { defineStore } from "pinia";
 import TaskService from "../services/TaskService";
 import type { Task, NewTask } from "../models/Task";

@@ -18,7 +18,6 @@
     "core-js": "^3.8.3",
     "pinia": "^2.0.23",
     "register-service-worker": "^1.7.2",
-    "tauri-plugin-sql-api": "github:tauri-apps/tauri-plugin-sql#dev",
     "vue": "^3.2.13",
     "vue-axios": "^3.5.2",
     "vue-class-component": "^8.0.0-0",

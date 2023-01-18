@@ -1,5 +1,3 @@
-// import Database from "tauri-plugin-sql-api";
-// import type { QueryResult } from "tauri-plugin-sql-api";
 // import { v4 } from "uuid";
 // import DBService from "@/services/DBService";
 import type { Task, NewTask } from "../models/Task";

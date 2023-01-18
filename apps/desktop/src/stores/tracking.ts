@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import Database from "tauri-plugin-sql-api";
 import TrackingService from "../services/TrackingService";
 import type {
   Tracking,
